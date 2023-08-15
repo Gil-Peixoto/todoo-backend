@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.peixoto.todoo.entities.Todoo;
 import com.peixoto.todoo.repositories.TodooRepository;
+import com.peixoto.todoo.services.exceptions.ObjectNotFoudException;
 
 @Service
 public class TodooService {
@@ -17,7 +18,7 @@ public class TodooService {
 	
 	public Todoo findById(Integer id) {
 		Optional<Todoo> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoudException("Objeto não encontrado! Id: " + id + ",Tipo: " + Todoo.class.getName()));
 		
 	}
 
