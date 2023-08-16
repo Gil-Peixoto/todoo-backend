@@ -9,7 +9,9 @@ public class TodooApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TodooApplication.class, args);
+		
 	}
+	
 
 	@Override
 	public void run(String... args) throws Exception {

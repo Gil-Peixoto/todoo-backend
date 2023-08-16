@@ -16,6 +16,16 @@ public class TodooService {
 	@Autowired
 	private TodooRepository repository;
 	
+	
+	private DBService dbService;
+	
+	
+	@Autowired
+	public TodooService(DBService dbService) {
+		this.dbService = dbService;
+		this.dbService.instanciaBaseDeDados();
+	}
+
 	public Todoo findById(Integer id) {
 		Optional<Todoo> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoudException("Objeto não encontrado! Id: " + id + ",Tipo: " + Todoo.class.getName()));
@@ -46,5 +56,12 @@ public class TodooService {
 		repository.deleteById(id);
 		
 	}
-	
+
+	public Todoo update(Integer id, Todoo obj) {
+        findById(id);
+
+        obj.setId(id);
+        return repository.save(obj);
+	}
+
 }
