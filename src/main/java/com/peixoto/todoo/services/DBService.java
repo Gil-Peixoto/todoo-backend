@@ -1,7 +1,7 @@
 package com.peixoto.todoo.services;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,13 +17,13 @@ public class DBService {
 	@Autowired
 	private TodooRepository todooRepository;
 
-	public List<Todoo> instanciaBaseDeDados() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+	public List<Todoo> instanciaBaseDeDados() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		Todoo t1 = new Todoo(null, "Estudar", "Estudar API e CRUD", LocalDateTime.parse("23/07/2023 15:12", formatter),false);
-		Todoo t2 = new Todoo(null, "Java", "Aprender jpa", LocalDateTime.parse("24/07/2023 16:18", formatter), true);
-		Todoo t3 = new Todoo(null, "Ler", "Documentação", LocalDateTime.parse("28/07/2023 15:15", formatter),false);
-		Todoo t4 = new Todoo(null, "Exercício", "if e else", LocalDateTime.parse("22/07/2023 16:19", formatter), true);
+		Todoo t1 = new Todoo(null, "Estudar", "Estudar API e CRUD", sdf.parse("23/07/2023"),false);
+		Todoo t2 = new Todoo(null, "Java", "Aprender jpa", sdf.parse("24/07/2023"), true);
+		Todoo t3 = new Todoo(null, "Ler", "Documentação", sdf.parse("28/07/2023"),false);
+		Todoo t4 = new Todoo(null, "Exercício", "if e else", sdf.parse("22/07/2023"), true);
 
 		return todooRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
 	}

@@ -1,5 +1,6 @@
 package com.peixoto.todoo.services;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ public class TodooService {
 	
 	
 	@Autowired
-	public TodooService(DBService dbService) {
+	public TodooService(DBService dbService) throws ParseException {
 		this.dbService = dbService;
 		this.dbService.instanciaBaseDeDados();
 	}
